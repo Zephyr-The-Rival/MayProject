@@ -38,6 +38,9 @@ public:
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UCameraComponent* Camera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USkeletalMeshComponent* ThirdPersonMesh;
 	
 	//Input_____
 protected:
@@ -75,7 +78,12 @@ protected:
 	float EnhancedSprintingSpeed = 800;
 
 private:
+	UPROPERTY(EditAnywhere,BlueprintGetter=GetIsSprinting)
 	bool bIsSprinting=false;
+public:
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool GetIsSprinting() const{return this->bIsSprinting;}
+private:
 	void SprintButtonDown();
 	void SprintButtonUp();
 	void StartSprinting();
@@ -83,6 +91,7 @@ private:
 	//Jumping
 	void JumpButtonDown();
 	void EndJump();
+
 public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FSingleEvent OnStartJump;

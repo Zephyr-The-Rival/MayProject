@@ -15,16 +15,20 @@ AGrapplePlayerCharacter::AGrapplePlayerCharacter()
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
 	this->Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(this->GetMesh(), TEXT("CameraSocket"));
-	this->GetMesh()->SetRelativeLocation(FVector(0,0,-GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
+
+	this->ThirdPersonMesh=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Third Person Mesh"));
+	ThirdPersonMesh->SetupAttachment(GetCapsuleComponent());
 }
 
 // Called when the game starts or when spawned
 void AGrapplePlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	this->GetCharacterMovement()->MaxWalkSpeed=this->WalkingSpeed;
 	
 }
 
