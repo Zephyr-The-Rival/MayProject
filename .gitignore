@@ -69,9 +69,9 @@ Saved/*
 # Compiled source files for the engine to use
 Intermediate/*
 Plugins/**/Intermediate/*
-UE_Grapple/Intermediate/Build
-UE_Grapple/Intermediate
-UE_Grapple/Saved
-UE_Grapple/.idea
-UE_Grapple/Binaries
-UE_Grapple/Content/StarterContent
+**/Intermediate/
+**/Intermediate/Build/
+**/Saved/
+**/.idea/
+**/Binaries/
+**/Content/StarterContent/
