@@ -93,9 +93,9 @@ private:
 	void EndJump();
 
 public:
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintAssignable)
 	FSingleEvent OnStartJump;
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UPROPERTY(EditAnywhere,BlueprintAssignable)
 	FSingleEvent OnEndJump;
 
 	//looking
