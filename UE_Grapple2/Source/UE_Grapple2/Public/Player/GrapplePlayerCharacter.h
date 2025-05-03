@@ -78,8 +78,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement/Walking")
 	float SprintingSpeed = 600;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement/Walking")
-	float EnhancedSprintingSpeed = 800;
 
 private:
 	UPROPERTY(EditAnywhere,BlueprintGetter=GetIsSprinting)
