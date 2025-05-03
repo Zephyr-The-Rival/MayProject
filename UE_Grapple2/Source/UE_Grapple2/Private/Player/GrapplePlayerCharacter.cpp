@@ -24,7 +24,7 @@ AGrapplePlayerCharacter::AGrapplePlayerCharacter()
 	ThirdPersonMesh->SetupAttachment(GetCapsuleComponent());
 
 	this->GrappleShooterCA=CreateDefaultSubobject<UChildActorComponent>(TEXT("GrappleShooterChildActor"));
-	this->GrappleShooterCA->SetupAttachment(this->GetMesh(), TEXT("GrappleShooterAnchor"));
+	this->GrappleShooterCA->SetupAttachment(this->GetMesh());//attachment to bone happens in GrappleShooter.BeginPlay() bc it didnt work here
 }
 
 // Called when the game starts or when spawned
