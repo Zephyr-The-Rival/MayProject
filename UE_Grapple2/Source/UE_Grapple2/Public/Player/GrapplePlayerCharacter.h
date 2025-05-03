@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "GrapplePlayerCharacter.generated.h"
 
+class AGrappleShooter;
 class UCameraComponent;
 struct FInputActionValue;
 class UInputAction;
@@ -41,6 +42,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USkeletalMeshComponent* ThirdPersonMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UChildActorComponent* GrappleShooterCA;
 	
 	//Input_____
 protected:
@@ -114,6 +118,6 @@ protected:
 	void ShootGrapplePressed();
 	void ShootGrappleEnd();
 
-	UPROPERTY(EditDefaultsOnly)
-	UChildActorComponent* GrappleShooterChildActor;
+private:
+	AGrappleShooter* MyGrappleShooter;
 };

@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/GrappleShooter/GrappleShooter.h"
 #include "UE_Grapple2/Public/Player/GrapplePlayerController.h"
 
 
@@ -21,6 +22,9 @@ AGrapplePlayerCharacter::AGrapplePlayerCharacter()
 
 	this->ThirdPersonMesh=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Third Person Mesh"));
 	ThirdPersonMesh->SetupAttachment(GetCapsuleComponent());
+
+	this->GrappleShooterCA=CreateDefaultSubobject<UChildActorComponent>(TEXT("GrappleShooterChildActor"));
+	this->GrappleShooterCA->SetupAttachment(this->GetMesh(), TEXT("GrappleShooterAnchor"));
 }
 
 // Called when the game starts or when spawned
@@ -29,7 +33,7 @@ void AGrapplePlayerCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	this->GetCharacterMovement()->MaxWalkSpeed=this->WalkingSpeed;
-	
+	this->MyGrappleShooter=Cast<AGrappleShooter>(this->GrappleShooterCA->GetChildActor());
 }
 
 // Called every frame
@@ -148,11 +152,13 @@ void AGrapplePlayerCharacter::Look(const FInputActionValue& Value)
 
 void AGrapplePlayerCharacter::ShootGrapplePressed()
 {
-	//Undefined
+	if(MyGrappleShooter)
+		this->MyGrappleShooter->Pressed();
 }
 
 void AGrapplePlayerCharacter::ShootGrappleEnd()
 {
-	//undefined
+	if(MyGrappleShooter)
+		this->MyGrappleShooter->Released();
 }
 
