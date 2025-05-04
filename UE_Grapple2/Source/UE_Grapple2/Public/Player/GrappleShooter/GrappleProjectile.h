@@ -6,6 +6,9 @@
 #include "GameFramework/Actor.h"
 #include "GrappleProjectile.generated.h"
 
+class USphereComponent;
+class UCapsuleComponent;
+
 UCLASS()
 class UE_GRAPPLE2_API AGrappleProjectile : public AActor
 {
@@ -22,7 +25,14 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* ProjectileMesh;
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USceneComponent* SpinAnchor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USceneComponent* SpinComponent;
 };

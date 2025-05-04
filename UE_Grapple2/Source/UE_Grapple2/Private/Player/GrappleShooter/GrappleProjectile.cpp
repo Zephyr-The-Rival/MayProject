@@ -3,15 +3,23 @@
 
 #include "Player/GrappleShooter/GrappleProjectile.h"
 
+#include "Components/SphereComponent.h"
+
 
 // Sets default values
 AGrappleProjectile::AGrappleProjectile()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	
+	this->ProjectileMesh=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
+	this->ProjectileMesh->SetupAttachment(this->GetRootComponent());
 
-	this->ProjectileMesh=CreateOptionalDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
-	this->ProjectileMesh->SetupAttachment(this->RootComponent);
+	this->SpinAnchor=CreateDefaultSubobject<USceneComponent>("SpinAnchor");
+	this->SpinAnchor->SetupAttachment(ProjectileMesh);
+
+	this->SpinComponent=CreateDefaultSubobject<USceneComponent>(TEXT("Spin Component"));
+	this->SpinComponent->SetupAttachment(this->SpinAnchor);
 }
 
 // Called when the game starts or when spawned
