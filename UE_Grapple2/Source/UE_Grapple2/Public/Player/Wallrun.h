@@ -28,12 +28,12 @@ public:
 
 public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void StartWallrun();
-	void StartWallrun_Implementation();
+	void StartWallrun(bool bRightSide);
+	void StartWallrun_Implementation(bool bRightSide);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void EndWallrun();
-	void EndWallrun_Implementation();
+	void EndWallrun(bool bRightSide);
+	void EndWallrun_Implementation(bool bRightSide);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void JumpOff();
