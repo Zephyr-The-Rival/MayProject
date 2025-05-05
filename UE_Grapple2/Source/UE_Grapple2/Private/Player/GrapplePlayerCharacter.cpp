@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "Player/GrappleShooter/GrappleShooter.h"
 #include "UE_Grapple2/Public/Player/GrapplePlayerController.h"
 
@@ -16,9 +17,12 @@ AGrapplePlayerCharacter::AGrapplePlayerCharacter()
 {
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	this->SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArm->SetupAttachment(this->GetMesh(),TEXT("CameraSocket"));
 	
 	this->Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
-	Camera->SetupAttachment(this->GetMesh(), TEXT("CameraSocket"));
+	Camera->SetupAttachment(this->SpringArm);
 
 	this->ThirdPersonMesh=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Third Person Mesh"));
 	ThirdPersonMesh->SetupAttachment(GetCapsuleComponent());
