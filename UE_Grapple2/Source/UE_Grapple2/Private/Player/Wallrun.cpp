@@ -33,12 +33,12 @@ void UWallrun::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 	// ...
 }
 
-void UWallrun::StartWallrun_Implementation()
+void UWallrun::StartWallrun_Implementation(bool bRightSide)
 {
 	
 }
 
-void UWallrun::EndWallrun_Implementation()
+void UWallrun::EndWallrun_Implementation(bool bRightSide)
 {
 }
 
