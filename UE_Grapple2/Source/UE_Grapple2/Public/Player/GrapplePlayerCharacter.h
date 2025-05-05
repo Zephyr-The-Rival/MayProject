@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "GrapplePlayerCharacter.generated.h"
 
+class UWallrun;
 class AGrappleShooter;
 class UCameraComponent;
 struct FInputActionValue;
@@ -45,6 +46,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UChildActorComponent* GrappleShooterCA;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UWallrun* Wallrunner;
 	
 	//Input_____
 protected:
