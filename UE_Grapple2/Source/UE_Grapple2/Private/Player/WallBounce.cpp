@@ -1,11 +1,11 @@
 ﻿// Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Player/Wallrun.h"
+#include "Player/WallBounce.h"
 
 
 // Sets default values for this component's properties
-UWallrun::UWallrun()
+UWallBounce::UWallBounce()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -16,7 +16,7 @@ UWallrun::UWallrun()
 
 
 // Called when the game starts
-void UWallrun::BeginPlay()
+void UWallBounce::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -26,24 +26,14 @@ void UWallrun::BeginPlay()
 
 
 // Called every frame
-void UWallrun::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UWallBounce::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
 }
 
-void UWallrun::StartWallrun_Implementation()
-{
-	
-}
-
-void UWallrun::EndWallrun_Implementation(float CustomCooldown)
-{
-	
-}
-
-void UWallrun::JumpOff_Implementation()
+void UWallBounce::StartCheckingForWall_Implementation()
 {
 	
 }

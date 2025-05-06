@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/WallBounce.h"
 #include "Player/Wallrun.h"
 #include "Player/GrappleShooter/GrappleShooter.h"
 #include "UE_Grapple2/Public/Player/GrapplePlayerController.h"
@@ -28,6 +29,7 @@ AGrapplePlayerCharacter::AGrapplePlayerCharacter()
 	this->GrappleShooterCA->SetupAttachment(this->GetMesh());//attachment to bone happens in GrappleShooter.BeginPlay() bc it didnt work here
 
 	this->Wallrunner=CreateDefaultSubobject<UWallrun>(TEXT("Wallrunner"));
+	this->WallBouncer=CreateDefaultSubobject<UWallBounce>(TEXT("Wall Bouncer"));
 }
 
 // Called when the game starts or when spawned
@@ -135,6 +137,11 @@ void AGrapplePlayerCharacter::JumpButtonDown()
 	if(Wallrunner->bWallrunning)
 	{
 		Wallrunner->JumpOff();
+		return;
+	}
+	if(this->GetCharacterMovement()->IsFalling())
+	{
+		this->WallBouncer->StartCheckingForWall();
 		return;
 	}
 	Jump(); //part of character;

@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "GrapplePlayerCharacter.generated.h"
 
+class UWallBounce;
 class UWallrun;
 class AGrappleShooter;
 class UCameraComponent;
@@ -49,6 +50,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UWallrun* Wallrunner;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UWallBounce* WallBouncer;
 	
 	//Input_____
 protected:
