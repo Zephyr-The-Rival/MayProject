@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "GrapplePlayerCharacter.generated.h"
 
+class USlide;
 class UWallBounce;
 class UWallrun;
 class AGrappleShooter;
@@ -48,11 +49,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UChildActorComponent* GrappleShooterCA;
 
+	//mechanic components
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UWallrun* Wallrunner;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UWallBounce* WallBouncer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USlide* Slider;
 	
 	//Input_____
 protected:
@@ -74,6 +79,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* ShootGrapplingHookAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+	UInputAction* SlideAction;
 
 protected:
 	//movement

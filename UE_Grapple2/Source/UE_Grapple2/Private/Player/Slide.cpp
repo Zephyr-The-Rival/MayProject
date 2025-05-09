@@ -35,11 +35,9 @@ void USlide::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponent
 
 void USlide::StartSlide_Implementation()
 {
-	
 }
 
 void USlide::EndSlide_Implementation()
 {
-	
 }
 

@@ -7,7 +7,7 @@
 #include "Slide.generated.h"
 
 
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent), Blueprintable)
 class UE_GRAPPLE2_API USlide : public UActorComponent
 {
 	GENERATED_BODY()
@@ -34,5 +34,5 @@ public:
 	void EndSlide_Implementation();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool bIsSliding=false;
+	bool bSlidingButtonDown=false;
 };

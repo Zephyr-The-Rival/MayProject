@@ -7,6 +7,7 @@
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/Slide.h"
 #include "Player/WallBounce.h"
 #include "Player/Wallrun.h"
 #include "Player/GrappleShooter/GrappleShooter.h"
@@ -30,6 +31,7 @@ AGrapplePlayerCharacter::AGrapplePlayerCharacter()
 
 	this->Wallrunner=CreateDefaultSubobject<UWallrun>(TEXT("Wallrunner"));
 	this->WallBouncer=CreateDefaultSubobject<UWallBounce>(TEXT("Wall Bouncer"));
+	this->Slider=CreateDefaultSubobject<USlide>(TEXT("Slider"));
 }
 
 // Called when the game starts or when spawned
@@ -73,6 +75,9 @@ void AGrapplePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	Input->BindAction(ShootGrapplingHookAction, ETriggerEvent::Started, this,&AGrapplePlayerCharacter::ShootGrapplePressed);
 	Input->BindAction(ShootGrapplingHookAction, ETriggerEvent::Completed, this,&AGrapplePlayerCharacter::ShootGrappleEnd);
 
+	Input->BindAction(SlideAction, ETriggerEvent::Started, Slider,&USlide::StartSlide);
+	Input->BindAction(SlideAction, ETriggerEvent::Completed, Slider,&USlide::EndSlide);
+
 	// Input->BindAction(ShootGunAction, ETriggerEvent::Triggered, this, &AGrapplePlayerCharacter::PullGunTrigger);
 	// Input->BindAction(ShootGunAction, ETriggerEvent::Completed, this, &AGrapplePlayerCharacter::ReleaseGunTrigger);
 	//
@@ -82,18 +87,16 @@ void AGrapplePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 void AGrapplePlayerCharacter::Move(const FInputActionValue& Value)
 {
 	FVector2d Vector2d = Value.Get<FVector2d>();
-	
-		FVector DeltaMovement = FVector(Vector2d.X, Vector2d.Y, 0);
-		FVector Forward = GetCapsuleComponent()->GetForwardVector() * Vector2d.X;
-		FVector Right = GetCapsuleComponent()->GetRightVector() * Vector2d.Y;
 
-		this->AddMovementInput(Forward + Right);
+	FVector DeltaMovement = FVector(Vector2d.X, Vector2d.Y, 0);
+	FVector Forward = GetCapsuleComponent()->GetForwardVector() * Vector2d.X;
+	FVector Right = GetCapsuleComponent()->GetRightVector() * Vector2d.Y;
 
-		if (Vector2d.X<0.5)
-		{
-			StopSprinting();
-		}
+	if (Vector2d.X < 0.5)
+		StopSprinting();
 	
+	
+	this->AddMovementInput(Forward + Right);
 }
 
 void AGrapplePlayerCharacter::SprintButtonDown()
