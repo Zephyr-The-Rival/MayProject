@@ -44,7 +44,7 @@ public:
 	UCameraComponent* Camera;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USkeletalMeshComponent* ThirdPersonMesh;
+	USkeletalMeshComponent* LowerBodyMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UChildActorComponent* GrappleShooterCA;

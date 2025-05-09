@@ -23,8 +23,8 @@ AGrapplePlayerCharacter::AGrapplePlayerCharacter()
 	this->Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->SetupAttachment(this->GetMesh(), TEXT("CameraSocket"));
 
-	this->ThirdPersonMesh=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Third Person Mesh"));
-	ThirdPersonMesh->SetupAttachment(GetCapsuleComponent());
+	this->LowerBodyMesh=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Lower Body Mesh"));
+	LowerBodyMesh->SetupAttachment(GetCapsuleComponent());
 
 	this->GrappleShooterCA=CreateDefaultSubobject<UChildActorComponent>(TEXT("GrappleShooterChildActor"));
 	this->GrappleShooterCA->SetupAttachment(this->GetMesh());//attachment to bone happens in GrappleShooter.BeginPlay() bc it didnt work here
