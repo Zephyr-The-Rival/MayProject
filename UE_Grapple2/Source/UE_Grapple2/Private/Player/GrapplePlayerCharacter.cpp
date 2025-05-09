@@ -75,6 +75,9 @@ void AGrapplePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	Input->BindAction(ShootGrapplingHookAction, ETriggerEvent::Started, this,&AGrapplePlayerCharacter::ShootGrapplePressed);
 	Input->BindAction(ShootGrapplingHookAction, ETriggerEvent::Completed, this,&AGrapplePlayerCharacter::ShootGrappleEnd);
 
+	Input->BindAction(GrapplePullAction, ETriggerEvent::Started, this,&AGrapplePlayerCharacter::GrapplePullPressed);
+	Input->BindAction(GrapplePullAction, ETriggerEvent::Completed, this,&AGrapplePlayerCharacter::GrapplePullEnd);
+
 	Input->BindAction(SlideAction, ETriggerEvent::Started, Slider,&USlide::StartSlide);
 	Input->BindAction(SlideAction, ETriggerEvent::Completed, Slider,&USlide::EndSlide);
 
@@ -179,5 +182,17 @@ void AGrapplePlayerCharacter::ShootGrappleEnd()
 {
 	if(MyGrappleShooter)
 		this->MyGrappleShooter->Released();
+}
+
+void AGrapplePlayerCharacter::GrapplePullPressed()
+{
+	if(MyGrappleShooter)
+		this->MyGrappleShooter->PullPressed();
+}
+
+void AGrapplePlayerCharacter::GrapplePullEnd()
+{
+	if(MyGrappleShooter)
+		this->MyGrappleShooter->PullReleased();
 }
 

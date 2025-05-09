@@ -81,6 +81,9 @@ protected:
 	UInputAction* ShootGrapplingHookAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
+	UInputAction* GrapplePullAction;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* SlideAction;
 
 protected:
@@ -131,6 +134,9 @@ protected:
 protected:
 	void ShootGrapplePressed();
 	void ShootGrappleEnd();
+
+	void GrapplePullPressed();
+	void GrapplePullEnd();
 
 private:
 	AGrappleShooter* MyGrappleShooter;

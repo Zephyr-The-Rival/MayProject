@@ -36,9 +36,18 @@ void AGrappleShooter::Pressed_Implementation()
 {
 }
 
+void AGrappleShooter::PullPressed_Implementation()
+{
+}
+
 void AGrappleShooter::Released_Implementation()
 {
 }
+
+void AGrappleShooter::PullReleased_Implementation()
+{
+}
+
 
 
 

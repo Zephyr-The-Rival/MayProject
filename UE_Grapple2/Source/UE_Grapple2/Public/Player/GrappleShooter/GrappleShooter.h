@@ -44,9 +44,16 @@ public:
 	void Pressed_Implementation();
 
 	UFUNCTION(BlueprintNativeEvent)
+	void PullPressed();
+	void PullPressed_Implementation();
+
+
+	UFUNCTION(BlueprintNativeEvent)
 	void Released();
 	void Released_Implementation();
 	
-	
+	UFUNCTION(BlueprintNativeEvent)
+	void PullReleased();
+	void PullReleased_Implementation();
 	
 };
