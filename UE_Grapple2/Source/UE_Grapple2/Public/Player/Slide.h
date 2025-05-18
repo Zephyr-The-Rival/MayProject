@@ -35,4 +35,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bSlidingButtonDown=false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bInSlidingPosition=false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bSlidingOnGround=false;
 };
