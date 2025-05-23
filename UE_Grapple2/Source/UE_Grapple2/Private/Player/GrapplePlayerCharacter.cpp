@@ -160,6 +160,9 @@ void AGrapplePlayerCharacter::EndJump()
 
 void AGrapplePlayerCharacter::Look(const FInputActionValue& Value)
 {
+	if(!this->bLookAllowed)
+		return;
+	
 	float DeltaYaw = Value.Get<FVector2d>().X * this->TurningSpeed;
 	AddControllerYawInput(DeltaYaw);
 

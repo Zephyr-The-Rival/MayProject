@@ -127,6 +127,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement/Looking")
 	float PitchLimit = 70;
 
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bLookAllowed = true;
 	//Grapple
 protected:
 	void ShootGrapplePressed();
