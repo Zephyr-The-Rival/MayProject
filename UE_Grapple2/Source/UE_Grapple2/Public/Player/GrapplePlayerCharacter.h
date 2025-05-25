@@ -128,8 +128,18 @@ protected:
 	float PitchLimit = 70;
 
 public:
+	//Gets blocked during grapple Kick
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bLookAllowed = true;
+
+private:
+	//restricted during slide
+	bool bLookRestricted = false;
+	FVector LookRestrictForwardVector;
+public:
+	UFUNCTION(BlueprintCallable)
+	void SetRestrictLook(bool bNewRestricted);
+	
 	//Grapple
 protected:
 	void ShootGrapplePressed();

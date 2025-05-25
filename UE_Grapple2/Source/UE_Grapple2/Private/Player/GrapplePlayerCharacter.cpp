@@ -12,6 +12,7 @@
 #include "Player/Wallrun.h"
 #include "Player/GrappleShooter/GrappleShooter.h"
 #include "UE_Grapple2/Public/Player/GrapplePlayerController.h"
+#include "UE_Grapple2/Public/Debug.h"
 
 
 // Sets default values
@@ -162,14 +163,35 @@ void AGrapplePlayerCharacter::Look(const FInputActionValue& Value)
 {
 	if(!this->bLookAllowed)
 		return;
-	
-	float DeltaYaw = Value.Get<FVector2d>().X * this->TurningSpeed;
+
+	float RestrictFactor =1;
+	if(this->bLookRestricted)
+	{
+		RestrictFactor = this->Camera->GetForwardVector().Dot(this->LookRestrictForwardVector);
+		RestrictFactor= FMath::Clamp(RestrictFactor-0.5, 0, 1);
+		RestrictFactor/=5;
+		UDebug::Print("Restrict Factor:" + FString::SanitizeFloat(RestrictFactor));
+	}
+	else
+		RestrictFactor=1;
+
+	//Turn capsule
+	float DeltaYaw = Value.Get<FVector2d>().X * this->TurningSpeed * RestrictFactor;
 	AddControllerYawInput(DeltaYaw);
 
+	//Turn Mesh
 	float DeltaPitch = Value.Get<FVector2d>().Y * this->TurningSpeed;
 	FRotator Rotator = FRotator(DeltaPitch, 0, 0);
 	if (abs(GetMesh()->GetRelativeRotation().Pitch + DeltaPitch) < this->PitchLimit)
 		GetMesh()->AddLocalRotation(Rotator);
+}
+
+void AGrapplePlayerCharacter::SetRestrictLook(bool bNewRestricted)
+{
+	this->bLookRestricted=bNewRestricted;
+
+	if(bLookRestricted)
+		this->LookRestrictForwardVector= this->Camera->GetForwardVector();
 }
 
 void AGrapplePlayerCharacter::ShootGrapplePressed()
