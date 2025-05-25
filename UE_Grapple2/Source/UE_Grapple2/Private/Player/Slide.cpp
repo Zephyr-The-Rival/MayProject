@@ -41,3 +41,7 @@ void USlide::EndSlide_Implementation()
 {
 }
 
+void USlide::SlideJump_Implementation()
+{
+}
+

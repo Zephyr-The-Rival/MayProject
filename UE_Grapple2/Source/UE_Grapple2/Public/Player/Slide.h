@@ -41,4 +41,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bSlidingOnGround=false;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void SlideJump();
+	void SlideJump_Implementation();
 };

@@ -143,6 +143,11 @@ void AGrapplePlayerCharacter::JumpButtonDown()
 		Wallrunner->JumpOff();
 		return;
 	}
+	if(this->Slider->bSlidingOnGround)
+	{
+		this->Slider->SlideJump();
+		return;
+	}
 	if(this->GetCharacterMovement()->IsFalling())
 	{
 		this->WallBouncer->StartCheckingForWall();
@@ -169,8 +174,7 @@ void AGrapplePlayerCharacter::Look(const FInputActionValue& Value)
 	{
 		RestrictFactor = this->Camera->GetForwardVector().Dot(this->LookRestrictForwardVector);
 		RestrictFactor= FMath::Clamp(RestrictFactor-0.5, 0, 1);
-		RestrictFactor/=5;
-		UDebug::Print("Restrict Factor:" + FString::SanitizeFloat(RestrictFactor));
+		RestrictFactor/=2;
 	}
 	else
 		RestrictFactor=1;
@@ -180,7 +184,7 @@ void AGrapplePlayerCharacter::Look(const FInputActionValue& Value)
 	AddControllerYawInput(DeltaYaw);
 
 	//Turn Mesh
-	float DeltaPitch = Value.Get<FVector2d>().Y * this->TurningSpeed;
+	float DeltaPitch = Value.Get<FVector2d>().Y * this->TurningSpeed*RestrictFactor;
 	FRotator Rotator = FRotator(DeltaPitch, 0, 0);
 	if (abs(GetMesh()->GetRelativeRotation().Pitch + DeltaPitch) < this->PitchLimit)
 		GetMesh()->AddLocalRotation(Rotator);
