@@ -94,6 +94,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement/Walking")
 	float SprintingSpeed = 600;
 
+private:
+	float TargetWalkingSpeed=this->WalkingSpeed;
+
 
 private:
 	UPROPERTY(EditAnywhere,BlueprintGetter=GetIsSprinting)

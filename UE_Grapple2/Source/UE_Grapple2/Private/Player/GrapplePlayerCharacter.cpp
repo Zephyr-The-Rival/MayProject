@@ -48,6 +48,13 @@ void AGrapplePlayerCharacter::BeginPlay()
 void AGrapplePlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (FMath::Abs(this->TargetWalkingSpeed - this->GetCharacterMovement()->MaxWalkSpeed) > 5)
+	{
+		this->GetCharacterMovement()->MaxWalkSpeed = FMath::FInterpConstantTo(this->GetCharacterMovement()->MaxWalkSpeed, this->TargetWalkingSpeed, DeltaTime, 1000);
+		if (FMath::Abs(this->TargetWalkingSpeed - this->GetCharacterMovement()->MaxWalkSpeed) <= 5)
+			this->GetCharacterMovement()->MaxWalkSpeed = this->TargetWalkingSpeed;
+	}
 }
 
 // Called to bind functionality to input
@@ -88,8 +95,7 @@ void AGrapplePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 void AGrapplePlayerCharacter::Move(const FInputActionValue& Value)
 {
 	FVector2d Vector2d = Value.Get<FVector2d>();
-
-	FVector DeltaMovement = FVector(Vector2d.X, Vector2d.Y, 0);
+	
 	FVector Forward = GetCapsuleComponent()->GetForwardVector() * Vector2d.X;
 	FVector Right = GetCapsuleComponent()->GetRightVector() * Vector2d.Y;
 
@@ -126,13 +132,15 @@ void AGrapplePlayerCharacter::SprintButtonUp()
 void AGrapplePlayerCharacter::StartSprinting()
 {
 	this->bIsSprinting = true;
-	GetCharacterMovement()->MaxWalkSpeed = this->SprintingSpeed;
+	this->TargetWalkingSpeed = this->SprintingSpeed;
+	//GetCharacterMovement()->MaxWalkSpeed = this->SprintingSpeed;
 }
 
 void AGrapplePlayerCharacter::StopSprinting()
 {
 	this->bIsSprinting = false;
-	GetCharacterMovement()->MaxWalkSpeed = this->WalkingSpeed;
+	this->TargetWalkingSpeed = this->WalkingSpeed;
+	//GetCharacterMovement()->MaxWalkSpeed = this->WalkingSpeed;
 }
 
 void AGrapplePlayerCharacter::JumpButtonDown()
