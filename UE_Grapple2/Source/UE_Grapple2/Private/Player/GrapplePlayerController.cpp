@@ -13,5 +13,10 @@ void AGrapplePlayerController::BeginPlay()
 
 void AGrapplePlayerController::OnAnyKeyPressed(const FKey& Key)
 {
-	this->bIsUsingGamepad = Key.IsGamepadKey();
+	if (this->bIsUsingGamepad != Key.IsGamepadKey())
+	{
+		this->bIsUsingGamepad = Key.IsGamepadKey();
+		this->OnInputDeviceSwitched.Broadcast(this->bIsUsingGamepad);
+	}
+	
 }

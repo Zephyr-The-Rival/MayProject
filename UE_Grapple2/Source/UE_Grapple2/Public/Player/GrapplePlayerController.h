@@ -9,6 +9,9 @@
 /**
  * 
  */
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FInputDeviceSwitched, bool, bIsUsingGamepad);
+
 UCLASS()
 class UE_GRAPPLE2_API AGrapplePlayerController : public APlayerController
 {
@@ -21,4 +24,8 @@ public:
 
 private:
 	void OnAnyKeyPressed(const FKey& Key);
+
+public:
+	UPROPERTY(BlueprintAssignable)
+	FInputDeviceSwitched OnInputDeviceSwitched;
 };
