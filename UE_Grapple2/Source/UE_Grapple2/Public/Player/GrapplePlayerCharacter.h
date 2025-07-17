@@ -77,6 +77,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* SprintAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
+	bool bToggleSprint=true;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* ShootGrapplingHookAction;
 
@@ -87,6 +90,7 @@ protected:
 	//movement
 	//walking
 	void Move(const FInputActionValue& Value);
+	void MoveEnd();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Movement/Walking")
 	float WalkingSpeed = 300;
