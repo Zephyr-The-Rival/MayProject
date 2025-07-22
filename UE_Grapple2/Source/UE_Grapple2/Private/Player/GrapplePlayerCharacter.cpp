@@ -88,6 +88,9 @@ void AGrapplePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 
 void AGrapplePlayerCharacter::Move(const FInputActionValue& Value)
 {
+	if (this->Slider->bInSlidingPosition)
+		return;
+	
 	FVector2d Vector2d = Value.Get<FVector2d>();
 
 	FVector DeltaMovement = FVector(Vector2d.X, Vector2d.Y, 0);
