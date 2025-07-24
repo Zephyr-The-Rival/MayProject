@@ -66,6 +66,7 @@ void AGrapplePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 
 	Input->BindAction(LookAction, ETriggerEvent::Triggered, this, &AGrapplePlayerCharacter::Look);
 	Input->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AGrapplePlayerCharacter::Move);
+	Input->BindAction(MoveAction, ETriggerEvent::Completed, this, &AGrapplePlayerCharacter::MoveEnd);
 
 	Input->BindAction(JumpAction, ETriggerEvent::Started, this, &AGrapplePlayerCharacter::JumpButtonDown);
 	Input->BindAction(JumpAction, ETriggerEvent::Completed, this, &AGrapplePlayerCharacter::EndJump);
@@ -87,39 +88,44 @@ void AGrapplePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 
 void AGrapplePlayerCharacter::Move(const FInputActionValue& Value)
 {
+	if (this->Slider->bInSlidingPosition)
+		return;
+	
 	FVector2d Vector2d = Value.Get<FVector2d>();
 
 	FVector DeltaMovement = FVector(Vector2d.X, Vector2d.Y, 0);
 	FVector Forward = GetCapsuleComponent()->GetForwardVector() * Vector2d.X;
 	FVector Right = GetCapsuleComponent()->GetRightVector() * Vector2d.Y;
 
-	if (Vector2d.X < 0.5)
+	if (Vector2d.X < 0.5)//if controller stops pushing forward
 		StopSprinting();
 	
 	
 	this->AddMovementInput(Forward + Right);
 }
 
+void AGrapplePlayerCharacter::MoveEnd()
+{
+	StopSprinting();
+}
+
 void AGrapplePlayerCharacter::SprintButtonDown()
 {
-	AGrapplePlayerController* PlayerController = Cast<AGrapplePlayerController>(GetController());
-	if (PlayerController->bIsUsingGamepad)
+
+	if (this->bToggleSprint&& this->bIsSprinting)
 	{
-		if (this->bIsSprinting)
-			StopSprinting();
-		else
-			StartSprinting();
+		this->StopSprinting();
+		return;
 	}
-	else
-	{
-		StartSprinting();
-	}
+
+	StartSprinting();
 }
 
 void AGrapplePlayerCharacter::SprintButtonUp()
 {
-	AGrapplePlayerController* PlayerController = Cast<AGrapplePlayerController>(GetController());
-	if (!PlayerController->bIsUsingGamepad)
+	if (this->bToggleSprint)
+		return;
+
 		StopSprinting();
 }
 
