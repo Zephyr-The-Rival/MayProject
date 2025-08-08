@@ -156,7 +156,7 @@ void AGrapplePlayerCharacter::JumpButtonDown()
 	}
 	if(this->GetCharacterMovement()->IsFalling())
 	{
-		this->WallBouncer->StartCheckingForWall();
+		this->WallBouncer->BounceOffWall();
 		return;
 	}
 	Jump(); //part of character;

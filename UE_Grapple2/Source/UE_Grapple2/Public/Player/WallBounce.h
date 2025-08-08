@@ -26,6 +26,6 @@ public:
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void StartCheckingForWall();
-	void StartCheckingForWall_Implementation();
+	void BounceOffWall();
+	void BounceOffWall_Implementation();
 };
