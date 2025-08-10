@@ -149,11 +149,21 @@ void AGrapplePlayerCharacter::JumpButtonDown()
 		Wallrunner->JumpOff();
 		return;
 	}
-	if(this->Slider->bSlidingOnGround)
+	
+	if (this->Slider->bSlidingOnGround)
 	{
-		this->Slider->SlideJump();
+		this->Slider->SlideJump(this->GetCharacterMovement()->Velocity);
 		return;
 	}
+	if (!this->Slider->GetLastSlidingVelocity().IsZero())// if coyote time velocity is sill valid.
+	{
+		this->Slider->SlideJump(this->Slider->GetLastSlidingVelocity());
+		UDebug::Print("Coyote Jump!");
+		return;
+	}
+		
+
+
 	if(this->GetCharacterMovement()->IsFalling())
 	{
 		this->WallBouncer->StartCheckingForWall();

@@ -43,6 +43,13 @@ public:
 	bool bSlidingOnGround=false;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void SlideJump();
-	void SlideJump_Implementation();
+	void SlideJump(FVector SourceVelocity);
+	void SlideJump_Implementation(FVector SourceVelocity);
+
+	//coyote time for jumping post sliding
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector LastSlidingVelocity;
+public:
+	FVector GetLastSlidingVelocity() const { return this->LastSlidingVelocity; }
 };
