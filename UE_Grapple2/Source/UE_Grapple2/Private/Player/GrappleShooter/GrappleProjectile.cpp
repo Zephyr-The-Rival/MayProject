@@ -14,12 +14,6 @@ AGrappleProjectile::AGrappleProjectile()
 	
 	this->ProjectileMesh=CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Projectile Mesh"));
 	this->ProjectileMesh->SetupAttachment(this->GetRootComponent());
-
-	this->SpinAnchor=CreateDefaultSubobject<USceneComponent>("SpinAnchor");
-	this->SpinAnchor->SetupAttachment(ProjectileMesh);
-
-	this->SpinComponent=CreateDefaultSubobject<USceneComponent>(TEXT("Spin Component"));
-	this->SpinComponent->SetupAttachment(this->SpinAnchor);
 }
 
 // Called when the game starts or when spawned

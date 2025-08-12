@@ -12,10 +12,6 @@ AGrappleShooter::AGrappleShooter()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	this->GrappleShooterMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-
-	this->CableComponent= CreateDefaultSubobject<UCableComponent>(TEXT("Cable"));
-	this->CableComponent->SetupAttachment(GrappleShooterMesh,TEXT("ProjectileSpawnPoint"));
-	this->CableComponent->SetHiddenInGame(true);
 	
 }
 

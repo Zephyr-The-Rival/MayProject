@@ -29,10 +29,4 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* ProjectileMesh;
 
-protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USceneComponent* SpinAnchor;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USceneComponent* SpinComponent;
 };

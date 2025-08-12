@@ -34,8 +34,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UStaticMeshComponent* GrappleShooterMesh;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UCableComponent* CableComponent;
 
 	//Functionality
 public:
