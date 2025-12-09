@@ -77,8 +77,8 @@ void AGrapplePlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerI
 	Input->BindAction(ShootGrapplingHookAction, ETriggerEvent::Started, this,&AGrapplePlayerCharacter::ShootGrapplePressed);
 	Input->BindAction(ShootGrapplingHookAction, ETriggerEvent::Completed, this,&AGrapplePlayerCharacter::ShootGrappleEnd);
 
-	Input->BindAction(SlideAction, ETriggerEvent::Started, Slider,&USlide::StartSlide);
-	Input->BindAction(SlideAction, ETriggerEvent::Completed, Slider,&USlide::EndSlide);
+	Input->BindAction(SlideAction, ETriggerEvent::Started, Slider,&USlide::HandleSlideButtonDown);
+	Input->BindAction(SlideAction, ETriggerEvent::Completed, Slider,&USlide::HandleSlideButtonUp);
 
 	// Input->BindAction(ShootGunAction, ETriggerEvent::Triggered, this, &AGrapplePlayerCharacter::PullGunTrigger);
 	// Input->BindAction(ShootGunAction, ETriggerEvent::Completed, this, &AGrapplePlayerCharacter::ReleaseGunTrigger);

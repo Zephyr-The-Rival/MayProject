@@ -26,12 +26,12 @@ public:
 	                           FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void StartSlide();
-	void StartSlide_Implementation();
+	void HandleSlideButtonDown();
+	void HandleSlideButtonDown_Implementation();
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void EndSlide();
-	void EndSlide_Implementation();
+	void HandleSlideButtonUp();
+	void HandleSlideButtonUp_Implementation();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	bool bSlidingButtonDown=false;
