@@ -126,7 +126,7 @@ void AGrapplePlayerCharacter::SprintButtonUp()
 	if (this->bToggleSprint)
 		return;
 
-		StopSprinting();
+	StopSprinting();
 }
 
 void AGrapplePlayerCharacter::StartSprinting()
