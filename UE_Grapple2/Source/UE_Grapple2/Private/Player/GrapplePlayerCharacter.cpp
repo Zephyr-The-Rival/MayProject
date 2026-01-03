@@ -155,6 +155,7 @@ void AGrapplePlayerCharacter::JumpButtonDown()
 		this->Slider->SlideJump(this->GetCharacterMovement()->Velocity);
 		return;
 	}
+	
 	if (!this->Slider->GetLastSlidingVelocity().IsZero())// if coyote time velocity is sill valid.
 	{
 		this->Slider->SlideJump(this->Slider->GetLastSlidingVelocity());
@@ -162,15 +163,14 @@ void AGrapplePlayerCharacter::JumpButtonDown()
 		return;
 	}
 		
-
-
+	
 	if(this->GetCharacterMovement()->IsFalling())
 	{
-		this->WallBouncer->StartCheckingForWall();
+		this->WallBouncer->HandleKick();
 		return;
 	}
-	Jump(); //part of character;
 	
+	Jump(); //part of character;
 }
 
 void AGrapplePlayerCharacter::EndJump()

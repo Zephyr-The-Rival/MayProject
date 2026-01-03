@@ -78,7 +78,7 @@ protected:
 	UInputAction* SprintAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Input")
-	bool bToggleSprint=true;
+	bool bToggleSprint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Input")
 	UInputAction* ShootGrapplingHookAction;

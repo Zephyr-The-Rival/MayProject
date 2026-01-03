@@ -33,7 +33,7 @@ void UWallBounce::TickComponent(float DeltaTime, ELevelTick TickType, FActorComp
 	// ...
 }
 
-void UWallBounce::StartCheckingForWall_Implementation()
+void UWallBounce::HandleKick_Implementation()
 {
 	
 }
