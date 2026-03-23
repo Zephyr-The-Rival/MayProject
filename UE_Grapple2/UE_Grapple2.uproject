@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.5",
+	"EngineAssociation": "5.7",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -20,8 +20,13 @@
 		},
 		{
 			"Name": "BlueprintAssist",
-			"Enabled": false,
+			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/9e895371fa3a471c87337860d6f341ff"
+		},
+		{
+			"Name": "SnappingHelper",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/1e0699cf59d64105957b4aa40f367252"
 		}
 	]
 }
